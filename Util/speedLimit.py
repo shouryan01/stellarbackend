@@ -4,6 +4,11 @@ import json, requests
 
 start_time = time.time()
 # pasted API keys here
+API_KEY = "fvm1e2NVAk1Ayvm58NYxS8IHtvRHPC2N4sWtOsjz"
+API_USERNAME = "alex.burke@fcagroup.com"
+API_PASSWORD = "Hackathon1!"
+VEHICLE_VIN = "1C4RJFBGXMC877858"
+VEHICLE_PIN = 1234
 
 base_url = "https://api.stellantis-developers.com"
 headers = {
@@ -50,7 +55,7 @@ def main():
     bearer_token = get_bearer_token()
 
     set_bearer_token(bearer_token)
-   
+    f = open("speedLimitData.txt", "a")
     while True:
         print("-----------------")
         time.sleep(1.0 - ((time.time() - start_time) % 1.0))
@@ -141,10 +146,13 @@ def main():
             "ATMPressure": ATMPressure,
             "AverageTemp": AverageTemp,
             "Odometer": Odometer,
+            "Latitude": latitude,
+            "Longitude": longitude,
         }
 
         speedInformation = json.dumps(speedInformationDict)
-
+        f.write(speedInformation)
+        f.write("\n")
         print(speedInformation)
 
 if __name__ == "__main__":
