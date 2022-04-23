@@ -2,6 +2,9 @@ import time
 import json, requests
 
 
+start_time = time.time()
+# pasted API keys here
+
 
 base_url = "https://api.stellantis-developers.com"
 headers = {
@@ -58,7 +61,7 @@ def main():
 
         for item in data_2["Items"]:
             vin = item["vin"]
-            if (item["signal"] == "Speedometer"):
+            if (item["signal"] == "VehSpdDisp"):
                 speed = item["value"]
             
             if (item["signal"] == "Latitude"):
@@ -69,6 +72,7 @@ def main():
 
         x = requests.get("https://dev.virtualearth.net/REST/v1/Routes/SnapToRoad?points={},{}&includeTruckSpeedLimit=true&IncludeSpeedLimit=true&speedUnit=MPH&travelMode=driving&key=ApB3pE4UR5Px4wJangIVFcsZGmLzxlHvntQeam933MqxSW4aqIme9SaZO1T_XECy".format(latitude, longitude))
         y = x.json()
+        print(y)
 
 
         for item in y["resourceSets"]:
@@ -80,7 +84,7 @@ def main():
         speedInformationDict = {
             "vin": vin,
             "speed": float(speed),
-            "speedLimit": float(speedLimit),
+            "speedLimit": float(speedLimit) * 1.609344,
         }
         speedInformation = json.dumps(speedInformationDict)
 
