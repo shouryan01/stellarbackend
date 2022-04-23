@@ -3,7 +3,6 @@ import json, requests
 
 
 
-start_time = time.time()
 # seconds = 4
 
 
@@ -52,50 +51,44 @@ def main():
     bearer_token = get_bearer_token()
 
     set_bearer_token(bearer_token)
+   
     while True:
         print("tick")
         time.sleep(1.0 - ((time.time() - start_time) % 1.0))
         data = json.dumps(get_last_known_data(VEHICLE_VIN))
         data_2 = json.loads(data)
 
+
         for item in data_2["Items"]:
-            # print(item)
-            # print(item["signal"])
-            # print(item["value"])
-            # print(type(item))
-            length = len(data_2)
-            i=0
-            # while i < length:
+            vin = item["vin"]
             if (item["signal"] == "Speedometer"):
-                print(item["value"])
+                # print(type(item["value"]))
+                speed = item["value"]
+                # print(item["value"])
             
             if (item["signal"] == "Latitude"):
-                print(item["value"])
+                # print(type(item["value"]))
+                latitude = item["value"]
+                # print(item["value"])
             
             if (item["signal"] == "Longitude"):
-                print(item["value"])
+                # print(type(item["value"]))
+                # print(item["value"])
+                longitude = item["value"]
+
+        x = requests.get("https://dev.virtualearth.net/REST/v1/Routes/SnapToRoad?points={},{}&includeTruckSpeedLimit=true&IncludeSpeedLimit=true&speedUnit=MPH&travelMode=driving&key=ApB3pE4UR5Px4wJangIVFcsZGmLzxlHvntQeam933MqxSW4aqIme9SaZO1T_XECy".format(latitude, longitude))
+        y = x.json()
 
 
-                # i += 1
-                    # break
+        for item in y["resourceSets"]:
+            for r in item["resources"]:
+                for z in r["snappedPoints"]:
+                    speedLimit = z["speedLimit"]
 
 
-    
+        speedInformationList = [vin, speed, speedLimit]
+        speedinformation = json.dumps(speedInformationList)
 
-    # print(get_last_known_data(VEHICLE_VIN))
-
-    # data = json.loads(get_last_known_data(VEHICLE_VIN))
-    
-
-    # for x in get_all_keys(data_2):
-    #     print(x)
-
-    # print(get_twenty_four_hour_data(VEHICLE_VIN))
-
-    # print(type(data_2))
-
-    # print(post_remote_command(VEHICLE_VIN, VEHICLE_PIN, "LOCK"))
 
 if __name__ == "__main__":
     main()
-
