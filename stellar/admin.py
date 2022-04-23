@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Driver
+from .models import Driver, VehicleData
 
 class DriverAdmin(UserAdmin):
     list_display = (
@@ -8,4 +8,8 @@ class DriverAdmin(UserAdmin):
         'age', 'score', 'state', 'team', 'make', 'year'
         )
 
-admin.site.register(Driver, DriverAdmin), 
+class VechicleDataAdmin(admin.ModelAdmin):
+    list_display = ('vin', 'speed', 'speedlimit', 'longitude', 'latitude')
+
+admin.site.register(Driver, DriverAdmin)
+admin.site.register(VehicleData, VechicleDataAdmin) 
