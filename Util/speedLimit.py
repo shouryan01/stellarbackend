@@ -53,7 +53,7 @@ def main():
     set_bearer_token(bearer_token)
    
     while True:
-        print("-----------------")
+        # print("-----------------")
         time.sleep(1.0 - ((time.time() - start_time) % 1.0))
         data = json.dumps(get_last_known_data(VEHICLE_VIN))
         data_2 = json.loads(data)
@@ -72,7 +72,6 @@ def main():
 
         x = requests.get("https://dev.virtualearth.net/REST/v1/Routes/SnapToRoad?points={},{}&includeTruckSpeedLimit=true&IncludeSpeedLimit=true&speedUnit=MPH&travelMode=driving&key=ApB3pE4UR5Px4wJangIVFcsZGmLzxlHvntQeam933MqxSW4aqIme9SaZO1T_XECy".format(latitude, longitude))
         y = x.json()
-        print(y)
 
 
         for item in y["resourceSets"]:
