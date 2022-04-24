@@ -162,8 +162,8 @@ def main():
             "ATMPressure": ATMPressure,
             "AverageTemp": AverageTemp,
             "Odometer": Odometer,
-            "Latitude": latitude,
-            "Longitude": longitude,
+            "latitude": latitude,
+            "longitude": longitude,
             "EngineCoolant": EngineCoolant,
             "EngineOilTemp": EngineOilTemp,
             "SteeringWheelAngle": SteeringWheelAngle,
@@ -178,6 +178,8 @@ def main():
         f.write(speedInformation)
         f.write("\n")
         print(speedInformation)
+
+        requests.post("http://localhost:8000/api/data/", data=speedInformation)
 
 if __name__ == "__main__":
     main()
