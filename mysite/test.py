@@ -1,15 +1,45 @@
 import requests
 
-data = {
-        "id": 4,
-        "username": "muhaddatha",
-        "age": 18,
-        "score": 700,
-        "state": "OH",
-        "team": 1001,
-        "make": "Chrysler",
-        "year": 2020,
-    }
+data = [
+    {   
+        "vin": "76",
+        "speed": "67878.000000000000000",
+        "speedlimit": "6.000000000000000",
+        "longitude": "765.000000000000000",
+        "latitude": "85.000000000000000"
+    },
+    {
+        "vin": "86",
+        "speed": "67878.000000000000000",
+        "speedlimit": "6.000000000000000",
+        "longitude": "765.000000000000000",
+        "latitude": "85.000000000000000"
+    },
+    {
+        "vin": "96",
+        "speed": "67878.000000000000000",
+        "speedlimit": "6.000000000000000",
+        "longitude": "765.000000000000000",
+        "latitude": "85.000000000000000"
+    },
+    {
+        "vin": "106",
+        "speed": "67878.000000000000000",
+        "speedlimit": "6.000000000000000",
+        "longitude": "765.000000000000000",
+        "latitude": "85.000000000000000"
+    },
+    {
+        "vin": "726",
+        "speed": "67878.000000000000000",
+        "speedlimit": "6.000000000000000",
+        "longitude": "765.000000000000000",
+        "latitude": "85.000000000000000"
+    },
+    {"vin": "1C4RJFBGXMC877858", "speed": 0.0, "speedLimit": 0.0, "Latitude": "42.4424723", "Longitude": "-83.0169672"}
+]
 
-x = requests.post("http://localhost:8000/api/drivers/", data=data)
-print(x, x.json())
+# for i in data:
+#     x = requests.post("http://localhost:8000/api/data/", data=i)
+#     print(x)
+

@@ -13,8 +13,8 @@ class VehicleData(models.Model):
     vin = models.CharField(max_length=120)
     speed = models.DecimalField(max_digits=30, decimal_places=15)
     speedlimit = models.DecimalField(max_digits=30, decimal_places=15) 
-    longitude = models.DecimalField(max_digits=30, decimal_places=15)
-    latitude = models.DecimalField(max_digits=30, decimal_places=15)
+    longitude = models.CharField(max_length=120)
+    latitude = models.CharField(max_length=120)
 
     def _str_(self):
         return self.vin

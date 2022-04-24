@@ -9,4 +9,4 @@ class DriverSerializer(serializers.ModelSerializer):
 class VehicleDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = VehicleData
-        fields = ('vin', 'speed', 'speedlimit', 'longitude', 'latitude')
+        fields = ('id', 'vin', 'speed', 'speedlimit', 'longitude', 'latitude')

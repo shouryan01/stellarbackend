@@ -20,7 +20,7 @@ from stellar import views
 
 router = routers.DefaultRouter()
 router.register(r'drivers', views.DriverView, 'driver')
-router.register(r'data', views.DriverView, 'data')
+router.register(r'data', views.VehicleDataView, 'dat')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
