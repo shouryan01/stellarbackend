@@ -15,6 +15,34 @@ class VehicleData(models.Model):
     speedlimit = models.DecimalField(max_digits=30, decimal_places=15) 
     longitude = models.CharField(max_length=120)
     latitude = models.CharField(max_length=120)
+    # absindlampstatus
+    # automaticoilchange
+    # doorajarstatus
+    # DriverBelt
+    # FuelLvlLow
+    # LowWasherFluid
+    # MaintenanceReminderStatus
+    # OilLifeSts
+    # PresentGear
+    # TransOverTemp
+    # AvgFuelEcon
+    # EngineRPM
+    # TirePressFL
+    # TirePressFR
+    # TirePressRL
+    # TirePressRR
+    # Altitude
+    # ATMPressure
+    # AverageTemp
+    # Odometer
+    # EngineCoolant
+    # EngineOilTemp
+    # SteeringWheelAngle
+    # ExteriorTemperature
+    # AverageTemp
+    # TargetGear
+    # TurnInd_LT_ON
+    # TurnInd_RT_ON
 
     def _str_(self):
         return self.vin

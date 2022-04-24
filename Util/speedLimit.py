@@ -15,11 +15,6 @@ headers = {
     "x-api-key": API_KEY, "user": API_USERNAME, "password": API_PASSWORD
 }
 
-django_headers={
-    'Content-type':'application/json', 
-    'Accept':'application/json'
-}
-
 
 def get_bearer_token():
     bearer_token_response = requests.post(base_url + "/v1/auth/token", headers=headers)
@@ -116,6 +111,22 @@ def main():
                 AverageTemp = item["value"]
             elif (item["signal"] == "Odometer"):
                 Odometer = item["value"]
+            elif (item["signal"] == "EngineCoolant"):
+                EngineCoolant = item["value"]
+            elif (item["signal"] == "EngineOilTemp"):
+                EngineOilTemp = item["value"]
+            elif (item["signal"] == "SteeringWheelAngle"):
+                SteeringWheelAngle = item["value"]
+            elif (item["signal"] == "ExteriorTemperature"):
+                ExteriorTemperature = item["value"]
+            elif (item["signal"] == "AverageTemp"):
+                AverageTemp = item["value"]
+            elif (item["signal"] == "TargetGear"):
+                TargetGear = item["value"]
+            elif (item["signal"] == "TurnInd_LT_ON"):
+                TurnInd_LT_ON = item["value"]
+            elif (item["signal"] == "TurnInd_RT_ON"):
+                TurnInd_RT_ON = item["value"]
 
         x = requests.get("https://dev.virtualearth.net/REST/v1/Routes/SnapToRoad?points={},{}&includeTruckSpeedLimit=true&IncludeSpeedLimit=true&speedUnit=MPH&travelMode=driving&key=ApB3pE4UR5Px4wJangIVFcsZGmLzxlHvntQeam933MqxSW4aqIme9SaZO1T_XECy".format(latitude, longitude))
         y = x.json()
@@ -130,7 +141,7 @@ def main():
         speedInformationDict = {
             "vin": vin,
             "speed": float(speed),
-            "speedLimit": float(speedLimit) * 1.609344,
+            "speedlimit": float(speedLimit) * 1.609344,
             # "ABSIndLampStatus": ABSIndLampStatus,
             # "AutomaticOilChange": AutomaticOilChange,
             # "Door_Ajar_Status": Door_Ajar_Status,
@@ -151,19 +162,25 @@ def main():
             # "ATMPressure": ATMPressure,
             # "AverageTemp": AverageTemp,
             # "Odometer": Odometer,
-            "Latitude": latitude,
-            "Longitude": longitude,
+            # "latitude": latitude,
+            # "longitude": longitude,
+            # "EngineCoolant": EngineCoolant,
+            # "EngineOilTemp": EngineOilTemp,
+            # "SteeringWheelAngle": SteeringWheelAngle,
+            # "ExteriorTemperature": ExteriorTemperature,
+            # "AverageTemp": AverageTemp,
+            # "TargetGear": TargetGear,
+            # "TurnInd_LT_ON": TurnInd_LT_ON,
+            # "TurnInd_RT_ON": TurnInd_RT_ON,
         }
 
         speedInformation = json.dumps(speedInformationDict)
-
-        # print(type(speedInformationDict))
-        x = requests.post("http://localhost:8000/api/data/", data=speedInformationDict)
-        print(x)
-
         f.write(speedInformation)
         f.write("\n")
         print(speedInformation)
+
+        x = requests.post("http://localhost:8000/api/data/", data=speedInformationDict)
+        print(x)
 
 if __name__ == "__main__":
     main()
