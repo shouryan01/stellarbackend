@@ -111,6 +111,22 @@ def main():
                 AverageTemp = item["value"]
             elif (item["signal"] == "Odometer"):
                 Odometer = item["value"]
+            elif (item["signal"] == "EngineCoolant"):
+                EngineCoolant = item["value"]
+            elif (item["signal"] == "EngineOilTemp"):
+                EngineOilTemp = item["value"]
+            elif (item["signal"] == "SteeringWheelAngle"):
+                SteeringWheelAngle = item["value"]
+            elif (item["signal"] == "ExteriorTemperature"):
+                ExteriorTemperature = item["value"]
+            elif (item["signal"] == "AverageTemp"):
+                AverageTemp = item["value"]
+            elif (item["signal"] == "TargetGear"):
+                TargetGear = item["value"]
+            elif (item["signal"] == "TurnInd_LT_ON"):
+                TurnInd_LT_ON = item["value"]
+            elif (item["signal"] == "TurnInd_RT_ON"):
+                TurnInd_RT_ON = item["value"]
 
         x = requests.get("https://dev.virtualearth.net/REST/v1/Routes/SnapToRoad?points={},{}&includeTruckSpeedLimit=true&IncludeSpeedLimit=true&speedUnit=MPH&travelMode=driving&key=ApB3pE4UR5Px4wJangIVFcsZGmLzxlHvntQeam933MqxSW4aqIme9SaZO1T_XECy".format(latitude, longitude))
         y = x.json()
@@ -148,6 +164,14 @@ def main():
             "Odometer": Odometer,
             "Latitude": latitude,
             "Longitude": longitude,
+            "EngineCoolant": EngineCoolant,
+            "EngineOilTemp": EngineOilTemp,
+            "SteeringWheelAngle": SteeringWheelAngle,
+            "ExteriorTemperature": ExteriorTemperature,
+            "AverageTemp": AverageTemp,
+            "TargetGear": TargetGear,
+            "TurnInd_LT_ON": TurnInd_LT_ON,
+            "TurnInd_RT_ON": TurnInd_RT_ON,
         }
 
         speedInformation = json.dumps(speedInformationDict)
