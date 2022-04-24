@@ -9,4 +9,37 @@ class DriverSerializer(serializers.ModelSerializer):
 class VehicleDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = VehicleData
-        fields = ('id', 'vin', 'speed', 'speedlimit', 'longitude', 'latitude')
+        fields = (
+                "vin",
+                "speed",
+                "speedlimit",
+                "ABSIndLampStatus",
+                "AutomaticOilChange",
+                "Door_Ajar_Status",
+                "DriverBelt",
+                "FuelLvlLow",
+                "LowWasherFluid",
+                "MaintenanceReminderStatus",
+                "OilLifeSts",
+                "PresentGear",
+                "TransOverTemp",
+                "AvgFuelEcon",
+                "EngineRPM",
+                "TirePressFL",
+                "TirePressFR",
+                "TirePressRL",
+                "TirePressRR",
+                "Altitude",
+                "ATMPressure",
+                "AverageTemp",
+                "Odometer",
+                "latitude",
+                "longitude",
+                "EngineCoolant",
+                "EngineOilTemp",
+                "SteeringWheelAngle",
+                "ExteriorTemperature",
+                "AverageTemp",
+                "TargetGear",
+                "TurnInd_LT_ON",
+                "TurnInd_RT_ON")
