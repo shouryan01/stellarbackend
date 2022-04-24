@@ -178,7 +178,7 @@ def main():
         f.write("\n")
         print(speedInformation)
 
-        requests.post("http://localhost:8000/api/data/", data=speedInformation)
+        requests.post("http://localhost:8000/api/data/", data=speedInformationDict)
 
 if __name__ == "__main__":
     main()
